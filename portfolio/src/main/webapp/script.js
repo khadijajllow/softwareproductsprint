@@ -25,24 +25,22 @@ function addRandomGreeting() {
   // Add it to the page.
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
-
+}
 function getdataservlet(){
     console.log('Fetching data servlet');
     const responsePromise = fetch('/data');
     responsePromise.then(handleResponse);
 }
 function handleResponse(response){
-    console.log('Handling response');
-
+   console.log('Handling response');
    const textPromise = response.text();
+   textPromise.then(addDataServletToDom)
 }
 
 function addDataServletToDom(servlet) {
-    console.log('Adding Data Servlet to dom:' + quote);
+    console.log('Adding Data Servlet to dom:' + servlet);
     
     const quoteContainer = document.getElementById('dataservlet-container');
-    quoteContainer.innerText = quote;
+    quoteContainer.innerText = servlet;
 }
 
-
-}
