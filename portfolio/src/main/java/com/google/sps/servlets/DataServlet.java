@@ -20,38 +20,61 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import com.google.gson.Gson;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+  private ArrayList<String> comments = new ArrayList<String>();
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // response.setContentType("text/html;");
-    // response.getWriter().println("<h1>Hello Khadija!</h1>");
-    ArrayList<String> comments = new ArrayList<String>();
-    comments.add("Welcome to my page!");
-    comments.add("Here are own personal comments");
-    comments.add(" Have a great time browsing and finsing out more about me.");
-    String json = convertToJson(comments);
     response.setContentType("application/json:");
+    String json = new Gson().toJson(comments);
     response.getWriter().println(json);
+//     //response.getWriter().println("<h1>Hello Khadija!</h1>");
+//     ArrayList<String> comments = new ArrayList<String>();
+//     comments.add(text);
+//     // comments.add("Here are own personal comments");
+//     // comments.add(" Have a great time browsing and finsing out more about me.");
+
+//     String json = convertToJson(comments);
+//     response.setContentType("application/json:");
+//     response.getWriter().println(json);
   }
-public String convertToJson(ArrayList<String> comment) {
-    String json = "[{";
-    json += "\"firstComment\": ";
-    json += "\"" + comment.get(0) +  "\"";
-    json += "}";
-    json += " , ";
-    json += "{";
-    json += "\"secondComment\": ";
-    json += "\"" + comment.get(1) +  "\"";
-    json += "}";
-    json += " , ";
-    json += "{";
-    json += "\"thirdComment\": ";
-    json += "\"" + comment.get(2) +  "\"";
-    json += "}]";
-    return json;
-}
+
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String comment = getParameter(request, "text-input", "");
+    comments.add(comment);
+    response.sendRedirect("/index.html");
+
+  }
+
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
+
+
+// public String convertToJson(ArrayList<String> comment) {
+   
+//     String json = "[{";
+//     json += "\"" + comment +  "\"";
+//     json += "\"" + comment.get(0) +  "\"";
+//     json += "}]";
+//     // json += " , ";
+//     // json += "{";
+//     // json += "\"secondComment\": ";
+//     // json += "\"" + comment.get(1) +  "\"";
+//     // json += "}";
+//     // json += " , ";
+//     // json += "{";
+//     // json += "\"thirdComment\": ";
+//     // json += "\"" + comment.get(2) +  "\"";
+//     // json += "}]";
+//     return json;
+// }
  
 }

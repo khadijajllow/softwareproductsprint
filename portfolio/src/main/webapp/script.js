@@ -45,53 +45,13 @@ function addDataServletToDom(servlet) {
 }
 
 function getComments(){
-    console.log("Fetching comments");
-    const responsePromise = fetch('/data');
-    // console.log(responsePromise);
-    const jsonPromise = responsePromise.then(handleResponse1);
-    console.log(jsonPromise);
-    jsonPromise.then(handleComments);
+    fetch('/data').then(response => response.json()).then((comments) => {
+    const commentsListElement = document.getElementById('comments-container');
+    comments.forEach((com) => {
+        commentsListElement.appendChild(createListElement(com));
+    });
+    });
 }
-
-
-function handleResponse1(response){
-    console.log(response);
-    return response.json();
-    // console.log("Handle Response");
-    // const textPromise = response.text();
-    // textPromise.then(addCommentsToDom)
-}
-    
-// // fetch the /server-stats URL
-// const fetchPromise = fetch('/server-stats');
-
-// // after the fetch comes back, call the handleResponse function,
-// // which itself returns a Promise
-// const jsonPromise = fetchPromise.then(handleResponse);
-
-// // when the jsonPromise comes back, call handleStats with the result
-// jsonPromise.then(handleStats);
-
-// function handleResponse(response) {
-//   return response.json();
-// }
-
-function handleComments(comments) {
-// your code
-    console.log(comments);
-    // console.log(comments[0].firstComment);
-    const commentsListElement= document.getElementById('comments-container');
-    commentsListElement.innerHTML='';
-    commentsListElement.appendChild(
-        createListElement(comments[0].firstComment));
-    commentsListElement.appendChild(
-        createListElement(comments[1].secondComment));
-    commentsListElement.appendChild(
-        createListElement(comments[2].thirdComment));
-}  
-    
-//     fetch('/data').then(response => response.json()).then((comments) =>   
-// }
 
 function createListElement(text) {
   const liElement = document.createElement('li');
