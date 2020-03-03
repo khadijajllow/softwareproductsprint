@@ -31,15 +31,7 @@ public class DataServlet extends HttpServlet {
     response.setContentType("application/json:");
     String json = new Gson().toJson(comments);
     response.getWriter().println(json);
-//     //response.getWriter().println("<h1>Hello Khadija!</h1>");
-//     ArrayList<String> comments = new ArrayList<String>();
-//     comments.add(text);
-//     // comments.add("Here are own personal comments");
-//     // comments.add(" Have a great time browsing and finsing out more about me.");
 
-//     String json = convertToJson(comments);
-//     response.setContentType("application/json:");
-//     response.getWriter().println(json);
   }
 
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -56,25 +48,5 @@ public class DataServlet extends HttpServlet {
     }
     return value;
   }
-
-
-// public String convertToJson(ArrayList<String> comment) {
-   
-//     String json = "[{";
-//     json += "\"" + comment +  "\"";
-//     json += "\"" + comment.get(0) +  "\"";
-//     json += "}]";
-//     // json += " , ";
-//     // json += "{";
-//     // json += "\"secondComment\": ";
-//     // json += "\"" + comment.get(1) +  "\"";
-//     // json += "}";
-//     // json += " , ";
-//     // json += "{";
-//     // json += "\"thirdComment\": ";
-//     // json += "\"" + comment.get(2) +  "\"";
-//     // json += "}]";
-//     return json;
-// }
  
 }
