@@ -26,23 +26,13 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
-function getdataservlet(){
-    console.log('Fetching data servlet');
-    const responsePromise = fetch('/data');
-    responsePromise.then(handleResponse);
-}
-function handleResponse(response){
-   console.log('Handling response');
-   const textPromise = response.text();
-   textPromise.then(addDataServletToDom)
+
+function getDataServlet(){
+fetch('/data').then(response => response.json()).then((quote) => {
+document.getElementById('dataservlet-container').innerText = quote;
+});
 }
 
-function addDataServletToDom(servlet) {
-    console.log('Adding Data Servlet to dom:' + servlet);
-    
-    const quoteContainer = document.getElementById('dataservlet-container');
-    quoteContainer.innerText = servlet;
-}
 
 function getComments(){
     fetch('/data').then(response => response.json()).then((comments) => {
