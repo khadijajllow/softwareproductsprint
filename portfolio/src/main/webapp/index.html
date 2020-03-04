@@ -6,10 +6,14 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getComments()">
     <div id="content">
       <h1>My Portfolio: Khadija Jallow</h1>
       <p>This is my portfolio.</p>
+      
+      <!-- <button onclick="getDataServlet()">Go to Data Servlet!</button>
+      <div id="dataservlet-container"></div> -->
+
       <p>Click here to get a random message:</p>
       <button onclick="addRandomGreeting()">Hello</button>
       <div id="greeting-container"></div>
@@ -35,8 +39,17 @@
     <p> I cannot think of any special talents I have but I have several hobbies. They include bingeing 90's TV shows like Living Single, Fresh Prince, Family Matters! I also have a knack at finding samples for songs.</p>
     
     <a href="www.linkedin.com/in/khadija-jallow"> Visit my Linkedin</a> <a href="https://github.com/khadijajllow" > Here's my Github </a> 
+    <p> </p>
+    
+    <form action="/data" method="POST">
+    <p>Comment Below!</p>
+    <textarea name= "text-input"> comment here</textarea>
+    <br/><br/>
 
+    <input type="submit" />
+    </form>
 
+   <div id="comments-container"></div>
 
     </div>
   </body>
