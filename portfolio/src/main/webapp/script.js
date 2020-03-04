@@ -35,6 +35,7 @@ document.getElementById('dataservlet-container').innerText = quote;
 
 
 function getComments(){
+    console.log("getComments called");
     fetch('/data').then(response => response.json()).then((comments) => {
     const commentsListElement = document.getElementById('comments-container');
     comments.forEach((com) => {
